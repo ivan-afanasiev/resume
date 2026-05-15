@@ -1,8 +1,17 @@
 /* global document, fetch, window, localStorage */
 
 const STORAGE_KEY = "cv.lang";
+const THEME_STORAGE_KEY = "cv.theme";
 const DEFAULT_LANG = "en";
 const SUPPORTED_LANGS = ["en", "ru"];
+const SUPPORTED_THEMES = ["light", "dark"];
+
+const THEME_ICONS = {
+    // Sun (shown in dark mode → click to go light)
+    light: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0-5a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0V3a1 1 0 0 1 1-1zm0 17a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0v-2a1 1 0 0 1 1-1zM4.22 4.22a1 1 0 0 1 1.42 0l1.41 1.41a1 1 0 1 1-1.41 1.42L4.22 5.64a1 1 0 0 1 0-1.42zm12.73 12.73a1 1 0 0 1 1.41 0l1.42 1.41a1 1 0 1 1-1.42 1.42l-1.41-1.42a1 1 0 0 1 0-1.41zM2 12a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2H3a1 1 0 0 1-1-1zm17 0a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2h-2a1 1 0 0 1-1-1zM4.22 19.78a1 1 0 0 1 0-1.42l1.41-1.41a1 1 0 1 1 1.42 1.41l-1.42 1.42a1 1 0 0 1-1.41 0zm12.73-12.73a1 1 0 0 1 0-1.42l1.42-1.41a1 1 0 1 1 1.41 1.42l-1.41 1.41a1 1 0 0 1-1.42 0z"/></svg>',
+    // Moon (shown in light mode → click to go dark)
+    dark: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 0 1 11.21 3 7 7 0 1 0 21 12.79z"/></svg>'
+};
 
 const ICONS = {
     email: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2zm0 2v.01L12 13l8-6.99V6H4zm0 12h16V8.236l-7.445 6.51a1 1 0 0 1-1.31 0L4 8.236V18z"/></svg>',
@@ -231,6 +240,50 @@ function renderDownloadButton(data) {
     }
 }
 
+function getCurrentTheme() {
+    const attr = document.documentElement.getAttribute("data-theme");
+    return SUPPORTED_THEMES.includes(attr) ? attr : "light";
+}
+
+function applyTheme(theme) {
+    if (!SUPPORTED_THEMES.includes(theme)) theme = "light";
+    document.documentElement.setAttribute("data-theme", theme);
+    try {
+        localStorage.setItem(THEME_STORAGE_KEY, theme);
+    } catch (e) {
+        /* ignore storage errors (e.g. private mode) */
+    }
+}
+
+function renderThemeToggle(data) {
+    const btn = document.querySelector("[data-theme-toggle]");
+    if (!btn) return;
+
+    const theme = getCurrentTheme();
+    const ui = data.ui || {};
+    // Label describes the action the click will perform.
+    const labelToDark = ui.darkMode || "Dark mode";
+    const labelToLight = ui.lightMode || "Light mode";
+    const nextLabel = theme === "dark" ? labelToLight : labelToDark;
+
+    const iconHost = btn.querySelector(".theme-btn__icon");
+    if (iconHost) {
+        // Show the icon of the *current* mode (sun in dark, moon in light).
+        iconHost.innerHTML = theme === "dark" ? THEME_ICONS.light : THEME_ICONS.dark;
+    }
+    btn.setAttribute("aria-label", nextLabel);
+    btn.title = nextLabel;
+
+    if (!btn.dataset.bound) {
+        btn.addEventListener("click", () => {
+            const next = getCurrentTheme() === "dark" ? "light" : "dark";
+            applyTheme(next);
+            renderThemeToggle(data);
+        });
+        btn.dataset.bound = "true";
+    }
+}
+
 function applyMeta(data, lang) {
     document.documentElement.setAttribute("lang", lang);
     if (data.meta && data.meta.documentTitle) {
@@ -248,6 +301,7 @@ async function render(lang) {
         renderWorkExperience(data);
         renderLanguageSwitcher(data, lang, switchLang);
         renderDownloadButton(data);
+        renderThemeToggle(data);
         localStorage.setItem(STORAGE_KEY, lang);
     } catch (err) {
         const main = document.querySelector(".page");
@@ -265,4 +319,21 @@ function switchLang(lang) {
 
 document.addEventListener("DOMContentLoaded", () => {
     render(getInitialLang());
+
+    // If the user hasn't picked a theme manually, follow OS preference live.
+    if (window.matchMedia) {
+        const mql = window.matchMedia("(prefers-color-scheme: dark)");
+        const onChange = (e) => {
+            try {
+                if (localStorage.getItem(THEME_STORAGE_KEY)) return;
+            } catch (err) {
+                /* fall through */
+            }
+            document.documentElement.setAttribute("data-theme", e.matches ? "dark" : "light");
+            const data = window.CV_DATA && window.CV_DATA[getInitialLang()];
+            if (data) renderThemeToggle(data);
+        };
+        if (mql.addEventListener) mql.addEventListener("change", onChange);
+        else if (mql.addListener) mql.addListener(onChange);
+    }
 });

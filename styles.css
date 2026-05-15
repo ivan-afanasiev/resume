@@ -7,11 +7,17 @@
     --color-bg: #f4f4f1;
     --color-page: #ffffff;
     --color-text: #2b2b2b;
+    --color-text-soft: #3a3a3a;
     --color-muted: #6b6b6b;
     --color-accent: #1f4e79;
     --color-accent-soft: #e8eef5;
     --color-rule: #d6d6d6;
     --color-sidebar: #f7f7f4;
+    --color-toolbar-bg: #ffffff;
+    --color-toolbar-shadow: rgba(0, 0, 0, 0.12);
+    --color-page-shadow: rgba(0, 0, 0, 0.08);
+    --color-accent-hover: #163e63;
+    --color-on-accent: #ffffff;
 
     --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
 
@@ -24,6 +30,25 @@
     --fs-h3: 14px;
     --fs-body: 12.5px;
     --fs-small: 11.5px;
+}
+
+/* Dark theme — applied via [data-theme="dark"] on <html>.
+   Page background gets darker than the page itself so the page card
+   still feels like a "sheet of paper" hovering on the desk. */
+[data-theme="dark"] {
+    --color-bg: #15171a;
+    --color-page: #1e2126;
+    --color-text: #e6e6e6;
+    --color-text-soft: #d2d2d2;
+    --color-muted: #9aa3ad;
+    --color-accent: #6ea8d6;
+    --color-accent-soft: #2a3a4d;
+    --color-rule: #3a3f47;
+    --color-sidebar: #1a1d22;
+    --color-toolbar-bg: #2a2e35;
+    --color-toolbar-shadow: rgba(0, 0, 0, 0.5);
+    --color-page-shadow: rgba(0, 0, 0, 0.4);
+    --color-accent-hover: #8cbde2;
 }
 
 * {
@@ -44,6 +69,7 @@ body {
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    transition: background 0.2s ease, color 0.2s ease;
 }
 
 a {
@@ -63,7 +89,8 @@ a:hover {
     min-height: 297mm;
     margin: 24px auto;
     padding: var(--page-padding);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 8px 30px var(--color-page-shadow);
+    transition: background 0.2s ease, box-shadow 0.2s ease;
 }
 
 /* Header ---------------------------------------------------------------- */
@@ -165,7 +192,7 @@ a:hover {
     margin: 0;
     text-align: justify;
     font-size: var(--fs-body);
-    color: #3a3a3a;
+    color: var(--color-text-soft);
 }
 
 /* Body grid ------------------------------------------------------------- */
@@ -284,7 +311,7 @@ a:hover {
 .entry-desc {
     margin: 0 0 6px;
     font-size: var(--fs-body);
-    color: #3a3a3a;
+    color: var(--color-text-soft);
 }
 
 .sidebar .entry-desc {
@@ -363,10 +390,10 @@ a:hover {
 .lang-switcher {
     display: flex;
     gap: 4px;
-    background: var(--color-page);
+    background: var(--color-toolbar-bg);
     padding: 4px;
     border-radius: 999px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 4px 16px var(--color-toolbar-shadow);
 }
 
 .lang-btn {
@@ -390,7 +417,7 @@ a:hover {
 
 .lang-btn.is-active {
     background: var(--color-accent);
-    color: #fff;
+    color: var(--color-on-accent);
 }
 
 /* Download PDF button --------------------------------------------------- */
@@ -399,7 +426,7 @@ a:hover {
     appearance: none;
     border: 0;
     background: var(--color-accent);
-    color: #fff;
+    color: var(--color-on-accent);
     font-family: inherit;
     font-size: 12px;
     font-weight: 600;
@@ -410,12 +437,12 @@ a:hover {
     padding: 8px 14px;
     border-radius: 999px;
     cursor: pointer;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 4px 16px var(--color-toolbar-shadow);
     transition: background 0.15s ease, transform 0.1s ease;
 }
 
 .download-btn:hover {
-    background: #163e63;
+    background: var(--color-accent-hover);
 }
 
 .download-btn:active {
@@ -425,6 +452,39 @@ a:hover {
 .download-btn svg {
     width: 14px;
     height: 14px;
+    fill: currentColor;
+}
+
+/* Theme toggle button -------------------------------------------------- */
+
+.theme-btn {
+    appearance: none;
+    border: 0;
+    background: var(--color-toolbar-bg);
+    color: var(--color-accent);
+    width: 34px;
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    cursor: pointer;
+    box-shadow: 0 4px 16px var(--color-toolbar-shadow);
+    transition: background 0.15s ease, color 0.15s ease, transform 0.1s ease;
+    padding: 0;
+}
+
+.theme-btn:hover {
+    color: var(--color-accent-hover);
+}
+
+.theme-btn:active {
+    transform: translateY(1px);
+}
+
+.theme-btn svg {
+    width: 16px;
+    height: 16px;
     fill: currentColor;
 }
 

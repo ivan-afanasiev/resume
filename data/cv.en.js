@@ -8,6 +8,8 @@ window.CV_DATA.en = {
         "achievements": "Achievements / Tasks",
         "present": "Present",
         "downloadPdf": "Download PDF",
+        "darkMode": "Dark mode",
+        "lightMode": "Light mode",
         "languageSwitcher": {
             "en": "EN",
             "ru": "RU"

@@ -8,6 +8,8 @@ window.CV_DATA.ru = {
         "achievements": "Достижения / Задачи",
         "present": "По наст. время",
         "downloadPdf": "Скачать PDF",
+        "darkMode": "Тёмная тема",
+        "lightMode": "Светлая тема",
         "languageSwitcher": {
             "en": "EN",
             "ru": "RU"
