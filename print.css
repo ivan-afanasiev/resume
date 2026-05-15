@@ -1,0 +1,76 @@
+/* ==========================================================================
+   Print stylesheet — inherits screen layout, only strips screen chrome.
+   Goal: the printed PDF matches what you see on screen.
+   ========================================================================== */
+
+@page {
+    size: A4;
+    margin: 16mm;
+}
+
+@media print {
+    /* Ensure backgrounds/colors render in the PDF */
+    html,
+    body {
+        background: #ffffff !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    /* Hide on-screen UI controls */
+    .toolbar,
+    .lang-switcher,
+    .download-btn {
+        display: none !important;
+    }
+
+    /* Strip screen-only chrome: the page is now the printable area itself */
+    .page {
+        width: 100% !important;
+        min-height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+        background: transparent !important;
+    }
+
+    /* Avoid breaking entries (jobs, side projects, teaching) across pages */
+    .entry {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+
+    /* Keep section titles attached to their content */
+    .section-title {
+        page-break-after: avoid;
+        break-after: avoid;
+    }
+
+    /* Make sure the body grid keeps its two columns at print resolution.
+       (Print viewports are sometimes narrow enough to trigger the
+        responsive single-column rule, which we don't want here.) */
+    .body {
+        display: grid !important;
+        grid-template-columns: 220px 1fr !important;
+        gap: 28px !important;
+        align-items: start !important;
+    }
+
+    .header {
+        flex-direction: row !important;
+    }
+
+    .contacts {
+        text-align: right !important;
+    }
+
+    .contacts li {
+        justify-content: flex-end !important;
+    }
+
+    /* Links: keep them readable but un-styled in print */
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+}
