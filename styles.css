@@ -513,6 +513,16 @@ a:hover {
         grid-template-columns: 1fr;
         gap: 20px;
     }
+
+    /* On mobile, lead with Work Experience; push Skills/Languages/Teaching
+       to the bottom. Desktop and print are unaffected. */
+    .sidebar {
+        order: 2;
+    }
+
+    .main-col {
+        order: 1;
+    }
 }
 
 @media (max-width: 480px) {
