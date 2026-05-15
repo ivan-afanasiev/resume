@@ -343,36 +343,6 @@ a:hover {
     color: var(--color-accent);
 }
 
-/* Responsive ------------------------------------------------------------ */
-
-@media (max-width: 820px) {
-    .page {
-        width: 100%;
-        margin: 0;
-        padding: 24px;
-        box-shadow: none;
-    }
-
-    .header {
-        flex-direction: column;
-        gap: 12px;
-    }
-
-    .contacts {
-        text-align: left;
-        min-width: 0;
-    }
-
-    .contacts li {
-        justify-content: flex-start;
-    }
-
-    .body {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-}
-
 /* Toolbar (fixed top-right) -------------------------------------------- */
 
 .toolbar {
@@ -507,4 +477,79 @@ a:hover {
     border-radius: 6px;
     overflow-x: auto;
     font-size: 13px;
+}
+
+/* Responsive ------------------------------------------------------------ */
+
+/* Note: kept at the bottom of the file so responsive overrides win
+   against the base rules without needing !important. */
+
+@media (max-width: 820px) {
+    .page {
+        width: 100%;
+        margin: 0;
+        /* Top padding leaves room for the fixed toolbar so it never
+           overlaps the name or title. */
+        padding: 64px 24px 24px;
+        box-shadow: none;
+    }
+
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .contacts {
+        text-align: left;
+        min-width: 0;
+    }
+
+    .contacts li {
+        justify-content: flex-start;
+    }
+
+    .body {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --fs-name: 26px;
+        --fs-title: 14px;
+        --fs-h2: 12px;
+        --fs-h3: 13px;
+        --fs-body: 13px;
+        --fs-small: 12px;
+    }
+
+    .page {
+        padding: 56px 18px 24px;
+    }
+
+    .photo {
+        width: 80px;
+        height: 80px;
+    }
+
+    /* Toolbar — shrink to icons-only and sit flush with the edge */
+    .toolbar {
+        top: 10px;
+        right: 10px;
+        gap: 6px;
+    }
+
+    .download-btn {
+        padding: 8px 10px;
+    }
+
+    .download-btn__label {
+        display: none;
+    }
+
+    .lang-btn {
+        padding: 6px 10px;
+    }
 }
