@@ -27,7 +27,7 @@ window.CV_DATA.en = {
         "title": "Staff Software Engineer",
         "photoUrl": "",
         "photoShape": "square",
-        "summary": "Fullstack Staff Software Engineer with deep roots in mobile (iOS, Android, React Native) and a growing focus on web (Next.js / TypeScript) and backend (Python / Django) systems. I excel at both platform and product engineering, with a proven track record of driving projects from concept to delivery — and increasingly, of designing AI-driven tooling that makes other engineers faster and more reliable. I care about keeping a healthy balance between technical excellence and product impact, enabling companies to hit strategic goals efficiently while mitigating technical risks. My style centers on empowering and inspiring teammates, fostering a culture of collaboration, accountability, and continuous improvement. I bring extensive experience designing and implementing robust, scalable solutions with a strong emphasis on automation, testing, and developer experience. By combining technical depth, a user-centric mindset, and pragmatic use of AI, I help teams ship solutions that are reliable, impactful, and aligned with business objectives."
+        "summary": "Staff Software Engineer with deep roots in mobile (iOS), platform products and a growing focus on general client-facing development. I excel at both platform and product engineering, with a proven track record of driving projects from concept to delivery — and increasingly, of designing AI-driven tooling that makes other engineers faster and more reliable. I care about keeping a healthy balance between technical excellence and product impact, enabling companies to hit strategic goals efficiently while mitigating technical risks. My style centers on empowering and inspiring teammates, fostering a culture of collaboration, accountability, and continuous improvement. I bring extensive experience designing and implementing robust, scalable solutions with a strong emphasis on automation, testing, and developer experience. By combining technical depth, a user-centric mindset, and pragmatic use of AI, I help teams ship solutions that are reliable, impactful, and aligned with business objectives."
     },
     "contacts": [
         { "type": "email", "value": "ivan.afanasiev@yahoo.com", "href": "mailto:ivan.afanasiev@yahoo.com" },
@@ -88,7 +88,7 @@ window.CV_DATA.en = {
         },
         {
             "title": "iOS Architect",
-            "company": "eBay (mobile.de)",
+            "company": "eBay (mobile.de brand)",
             "startDate": "10/2019",
             "endDate": "11/2021",
             "location": "Berlin, Germany",
