@@ -390,6 +390,41 @@ a:hover {
     color: var(--color-on-accent);
 }
 
+/* Track switcher (IC / EM) --------------------------------------------- */
+
+.track-switcher {
+    display: flex;
+    gap: 4px;
+    background: var(--color-toolbar-bg);
+    padding: 4px;
+    border-radius: 999px;
+    box-shadow: 0 4px 16px var(--color-toolbar-shadow);
+}
+
+.track-btn {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    color: var(--color-muted);
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.track-btn:hover {
+    color: var(--color-accent);
+}
+
+.track-btn.is-active {
+    background: var(--color-accent);
+    color: var(--color-on-accent);
+}
+
 /* Download PDF button --------------------------------------------------- */
 
 .download-btn {
@@ -560,6 +595,10 @@ a:hover {
     }
 
     .lang-btn {
+        padding: 6px 10px;
+    }
+
+    .track-btn {
         padding: 6px 10px;
     }
 }

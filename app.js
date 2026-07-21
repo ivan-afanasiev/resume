@@ -1,9 +1,12 @@
 /* global document, fetch, window, localStorage */
 
 const STORAGE_KEY = "cv.lang";
+const TRACK_STORAGE_KEY = "cv.track";
 const THEME_STORAGE_KEY = "cv.theme";
 const DEFAULT_LANG = "en";
+const DEFAULT_TRACK = "ic";
 const SUPPORTED_LANGS = ["en", "ru"];
+const SUPPORTED_TRACKS = ["ic", "em"];
 const SUPPORTED_THEMES = ["light", "dark"];
 
 const THEME_ICONS = {
@@ -36,10 +39,24 @@ function getInitialLang() {
     return DEFAULT_LANG;
 }
 
-async function loadData(lang) {
-    const data = window.CV_DATA && window.CV_DATA[lang];
+function getInitialTrack() {
+    const fromUrl = new URLSearchParams(window.location.search).get("track");
+    if (fromUrl && SUPPORTED_TRACKS.includes(fromUrl)) return fromUrl;
+
+    const fromStorage = localStorage.getItem(TRACK_STORAGE_KEY);
+    if (fromStorage && SUPPORTED_TRACKS.includes(fromStorage)) return fromStorage;
+
+    return DEFAULT_TRACK;
+}
+
+async function loadData(lang, track) {
+    const langData = window.CV_DATA && window.CV_DATA[lang];
+    if (!langData) {
+        throw new Error(`No CV data found for "${lang}". Make sure data/cv.${lang}.ic.js and data/cv.${lang}.em.js are loaded before app.js in index.html.`);
+    }
+    const data = langData[track];
     if (!data) {
-        throw new Error(`No CV data found for "${lang}". Make sure data/cv.${lang}.js is loaded before app.js in index.html.`);
+        throw new Error(`No CV data found for track "${track}" in "${lang}".`);
     }
     return data;
 }
@@ -226,6 +243,23 @@ function renderLanguageSwitcher(data, currentLang, onChange) {
     }
 }
 
+function renderTrackSwitcher(data, currentTrack, onChange) {
+    const switcher = document.querySelector(".track-switcher");
+    if (!switcher) return;
+    switcher.innerHTML = "";
+    const labels = (data.ui && data.ui.trackSwitcher) || {};
+    for (const track of SUPPORTED_TRACKS) {
+        const label = labels[track] || track.toUpperCase();
+        const btn = el("button", {
+            className: `track-btn${track === currentTrack ? " is-active" : ""}`,
+            text: label,
+            attrs: { type: "button", "data-track": track, "aria-pressed": String(track === currentTrack) }
+        });
+        btn.addEventListener("click", () => onChange(track));
+        switcher.appendChild(btn);
+    }
+}
+
 function renderDownloadButton(data) {
     const btn = document.querySelector(".download-btn");
     if (!btn) return;
@@ -291,18 +325,25 @@ function applyMeta(data, lang) {
     }
 }
 
-async function render(lang) {
+let currentLang = DEFAULT_LANG;
+let currentTrack = DEFAULT_TRACK;
+
+async function render(lang, track) {
     try {
-        const data = await loadData(lang);
+        currentLang = lang;
+        currentTrack = track;
+        const data = await loadData(lang, track);
         applyMeta(data, lang);
         renderHeader(data);
         renderSummary(data);
         renderSidebar(data);
         renderWorkExperience(data);
         renderLanguageSwitcher(data, lang, switchLang);
+        renderTrackSwitcher(data, track, switchTrack);
         renderDownloadButton(data);
         renderThemeToggle(data);
         localStorage.setItem(STORAGE_KEY, lang);
+        localStorage.setItem(TRACK_STORAGE_KEY, track);
     } catch (err) {
         const main = document.querySelector(".page");
         main.innerHTML = `<div class="error"><h2>Could not load CV data</h2><p>${err.message}</p></div>`;
@@ -314,11 +355,19 @@ function switchLang(lang) {
     const url = new URL(window.location.href);
     url.searchParams.set("lang", lang);
     window.history.replaceState({}, "", url);
-    render(lang);
+    render(lang, currentTrack);
+}
+
+function switchTrack(track) {
+    if (!SUPPORTED_TRACKS.includes(track)) return;
+    const url = new URL(window.location.href);
+    url.searchParams.set("track", track);
+    window.history.replaceState({}, "", url);
+    render(currentLang, track);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    render(getInitialLang());
+    render(getInitialLang(), getInitialTrack());
 
     // If the user hasn't picked a theme manually, follow OS preference live.
     if (window.matchMedia) {
@@ -330,7 +379,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 /* fall through */
             }
             document.documentElement.setAttribute("data-theme", e.matches ? "dark" : "light");
-            const data = window.CV_DATA && window.CV_DATA[getInitialLang()];
+            const langData = window.CV_DATA && window.CV_DATA[currentLang];
+            const data = langData && langData[currentTrack];
             if (data) renderThemeToggle(data);
         };
         if (mql.addEventListener) mql.addEventListener("change", onChange);

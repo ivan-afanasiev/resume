@@ -1,5 +1,7 @@
 window.CV_DATA = window.CV_DATA || {};
-window.CV_DATA.en = {
+window.CV_DATA.en = window.CV_DATA.en || {};
+
+window.CV_DATA.en.ic = {
     "meta": {
         "lang": "en",
         "documentTitle": "Ivan Afanasyev — Staff Software Engineer"
@@ -14,6 +16,10 @@ window.CV_DATA.en = {
             "en": "EN",
             "ru": "RU"
         },
+        "trackSwitcher": {
+            "ic": "IC",
+            "em": "EM"
+        },
         "sections": {
             "skills": "Skills",
             "languages": "Languages",
@@ -24,10 +30,10 @@ window.CV_DATA.en = {
     },
     "profile": {
         "name": "Ivan Afanasyev",
-        "title": "Staff Software Engineer",
+        "title": "Staff Engineer — Client Platform & Developer Experience",
         "photoUrl": "",
         "photoShape": "square",
-        "summary": "Staff Software Engineer with deep roots in mobile (iOS), platform products and a growing focus on general client-facing development. I excel at both platform and product engineering, with a proven track record of driving projects from concept to delivery — and increasingly, of designing AI-driven tooling that makes other engineers faster and more reliable. I care about keeping a healthy balance between technical excellence and product impact, enabling companies to hit strategic goals efficiently while mitigating technical risks. My style centers on empowering and inspiring teammates, fostering a culture of collaboration, accountability, and continuous improvement. I bring extensive experience designing and implementing robust, scalable solutions with a strong emphasis on automation, testing, and developer experience. By combining technical depth, a user-centric mindset, and pragmatic use of AI, I help teams ship solutions that are reliable, impactful, and aligned with business objectives."
+        "summary": "Staff engineer specializing in client platforms, SDKs, and developer tooling — the systems other engineers and companies build on top of. Across my career I've built mobile advertising SDKs, re-architected the mobile.de iOS platform, owned Onfido's identity SDK platform, and now own HelloFresh's group-wide analytics, experimentation, and feature-flag platform for client-facing apps. I excel at turning messy, cross-team problems into paved roads: robust APIs, code-generation and event-definition tooling, and increasingly AI-driven tools that make other engineers faster and more reliable. I care about keeping a healthy balance between technical excellence and product impact, enabling companies to hit strategic goals efficiently while mitigating technical risks. My style centers on empowering teammates and fostering a culture of collaboration, accountability, and continuous improvement, backed by deep experience in automation, testing, and developer experience. By combining platform depth, a user-centric mindset, and pragmatic use of AI, I help whole engineering orgs ship faster on solid foundations."
     },
     "contacts": [
         { "type": "email", "value": "ivan.afanasiev@yahoo.com", "href": "mailto:ivan.afanasiev@yahoo.com" },
@@ -37,13 +43,16 @@ window.CV_DATA.en = {
         { "type": "linkedin", "value": "linkedin.com/in/ivanafanasiev", "href": "https://linkedin.com/in/ivanafanasiev" }
     ],
     "skills": [
-        "Leadership", "Facilitation", "System Design", "Design patterns",
+        "Client Platform Engineering", "Developer Experience & Tooling", "SDK Design & APIs",
+        "System Design", "Software Architecture", "Design patterns",
+        "Analytics & Experimentation platforms", "Code generation", "Feature flags & remote config",
         "iOS", "Android", "Swift", "Objective-C", "Kotlin", "Java",
         "React Native", "Flutter", "Dart",
         "JavaScript", "TypeScript", "Next.js", "React",
         "Python", "Django", "Ruby", "C/C++",
         "GitHub", "GitHub Actions", "CI/CD",
-        "Behavioural analytics", "Unit testing", "UI testing"
+        "Unit testing", "UI testing",
+        "AI-driven tooling", "Technical leadership", "Mentoring"
     ],
     "languages": [
         { "name": "Russian", "level": "Native" },
@@ -59,7 +68,8 @@ window.CV_DATA.en = {
             "location": "Berlin, Germany",
             "description": [
                 "HelloFresh Group is the world's leading meal-kit company, delivering recipes and pre-portioned ingredients to millions of customers across 18+ countries through brands such as HelloFresh, Green Chef, Factor, Every Plate, and Chefs Plate.",
-                "I work within the Data and Foundation Alliances on the behavioural analytics infrastructure that powers all client-facing applications across the group's brands. I own the end-to-end web and mobile analytics infrastructure — creation, integration, monitoring, and routing of analytics events."
+                "I work within the Data and Foundation Alliances on the behavioural analytics infrastructure that powers all client-facing applications across the group's brands. I own the end-to-end web and mobile analytics infrastructure — creation, integration, monitoring, and routing of analytics events.",
+                "I initially focused on behavioural data and analytics, and later grew my scope to also cover experimentation, remote configs, and feature flags across the group's client-facing platforms."
             ],
             "achievements": [
                 "Defined the technical and product requirements for the internal analytics platform and tooling.",
@@ -77,13 +87,13 @@ window.CV_DATA.en = {
             "location": "Berlin, Germany",
             "description": [
                 "Onfido helps companies see real identity – the humans behind the screens – using world-leading AI and identity experts.",
-                "As a Staff Software Engineer, I oversee the Onfido SDKs, SDK APIs, internal tooling, stability improvements, and other crucial SDK platform-related initiatives. Throughout my time at Onfido, I worked with multiple teams and focused on different aspects of the SDK business."
+                "As a Staff Software Engineer, I owned the technical direction of the Onfido SDKs, SDK APIs, internal tooling, and stability initiatives, working across multiple teams on the SDK platform."
             ],
             "achievements": [
-                "Managed a team of 10 engineers for 1.5 years.",
-                "Organized iOS developers to define clear measures to ensure the stability of the SDK product in a short period of time.",
                 "Led the implementation of multiple core SDK features such as NFC scanning and automatic image capture based on image-recognition technologies.",
-                "Co-authored technical and product visions on the SDK product for the next years, successfully pitched to the leadership; this vision is now in the process of implementation."
+                "Drove SDK stability engineering that both halved crash rates and made the SDK best-in-class for stability versus competitors.",
+                "Defined clear, measurable quality bars with iOS developers and got the SDK product stable in a short period of time.",
+                "Co-authored technical and product visions on the SDK product for the next years, successfully pitched to leadership; this vision is now in the process of implementation."
             ]
         },
         {
