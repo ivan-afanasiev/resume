@@ -30,7 +30,7 @@ window.CV_DATA.en.ic = {
     },
     "profile": {
         "name": "Ivan Afanasyev",
-        "title": "Staff Engineer — Client Platform & Developer Experience",
+        "title": "Staff Engineer — Client Platforms & Developer Experience",
         "photoUrl": "",
         "photoShape": "square",
         "summary": "Staff engineer specializing in client platforms, SDKs, and developer tooling — the systems other engineers and companies build on top of. Across my career I've built mobile advertising SDKs, re-architected the mobile.de iOS platform, owned Onfido's identity SDK platform, and now own HelloFresh's group-wide analytics, experimentation, and feature-flag platform for client-facing apps. I excel at turning messy, cross-team problems into paved roads: robust APIs, code-generation and event-definition tooling, and increasingly AI-driven tools that make other engineers faster and more reliable. I care about keeping a healthy balance between technical excellence and product impact, enabling companies to hit strategic goals efficiently while mitigating technical risks. My style centers on empowering teammates and fostering a culture of collaboration, accountability, and continuous improvement, backed by deep experience in automation, testing, and developer experience. By combining platform depth, a user-centric mindset, and pragmatic use of AI, I help whole engineering orgs ship faster on solid foundations."
@@ -86,14 +86,14 @@ window.CV_DATA.en.ic = {
             "endDate": "05/2025",
             "location": "Berlin, Germany",
             "description": [
-                "Onfido helps companies see real identity – the humans behind the screens – using world-leading AI and identity experts.",
+                "Onfido helps companies see real identity — the humans behind the screens — using world-leading AI and identity experts.",
                 "As a Staff Software Engineer, I owned the technical direction of the Onfido SDKs, SDK APIs, internal tooling, and stability initiatives, working across multiple teams on the SDK platform."
             ],
             "achievements": [
                 "Led the implementation of multiple core SDK features such as NFC scanning and automatic image capture based on image-recognition technologies.",
                 "Drove SDK stability engineering that both halved crash rates and made the SDK best-in-class for stability versus competitors.",
-                "Defined clear, measurable quality bars with iOS developers and got the SDK product stable in a short period of time.",
-                "Co-authored technical and product visions on the SDK product for the next years, successfully pitched to leadership; this vision is now in the process of implementation."
+                "Defined clear, measurable quality bars with iOS developers and quickly brought the SDK product to a stable state.",
+                "Co-authored a multi-year technical and product vision for the SDK, successfully pitched it to leadership; it is now in the process of implementation."
             ]
         },
         {
@@ -119,11 +119,11 @@ window.CV_DATA.en.ic = {
             "location": "St. Petersburg, Russia / Berlin, Germany / Hamburg, Germany",
             "description": [
                 "Smaato is the leading global real-time mobile advertising platform, connecting 10,000+ advertisers — including 91 of the Top 100 Ad Age brands — with over 90,000 mobile publishers and app developers.",
-                "I was involved in designing and developing multiple advertisement SDKs for mobile."
+                "Designed and developed multiple advertisement SDKs for mobile."
             ],
             "achievements": [
                 "Designed VIPER-based modular and highly testable architectures for SDKs, test, and demo applications for iOS as well as Android.",
-                "Created own reactive injections, promises, loggers, and testing tools.",
+                "Created custom reactive injection, promises, loggers, and testing tools.",
                 "Implemented multiple advertisement standards such as MRAID, VAST, VPAID, etc.",
                 "Created an environment for automation testing and release.",
                 "Coached other team members (from 2 to 5 at different times).",
