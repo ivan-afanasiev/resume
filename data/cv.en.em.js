@@ -43,14 +43,34 @@ window.CV_DATA.en.em = {
         { "type": "linkedin", "value": "linkedin.com/in/ivanafanasiev", "href": "https://linkedin.com/in/ivanafanasiev" }
     ],
     "skills": [
-        "Platform Engineering", "Developer Experience & Tooling", "SDK Platform Strategy",
-        "Engineering Management", "Team Leadership", "People Development",
-        "Technical Strategy & Vision", "Building & Scaling Platform Teams",
-        "Coaching & Mentoring", "Hiring & Retention", "Performance & Promotions",
-        "Delivery Management", "Stakeholder Management", "Facilitation",
-        "System Design", "Software Architecture",
-        "iOS", "Swift", "Android", "Kotlin", "React Native",
-        "Analytics & Experimentation platforms", "CI/CD", "Quality & Stability engineering"
+        {
+            "name": "Leadership & People",
+            "items": [
+                "Engineering Management", "Team Leadership", "People Development",
+                "Coaching & Mentoring", "Hiring & Retention", "Performance & Promotions"
+            ]
+        },
+        {
+            "name": "Platform & Technical",
+            "items": [
+                "Platform Engineering", "SDK Platform Strategy", "Developer Experience & Tooling",
+                "Technical Strategy & Vision", "Building & Scaling Platform Teams",
+                "System Design", "Software Architecture",
+                "Analytics & Experimentation platforms", "Quality & Stability engineering"
+            ]
+        },
+        {
+            "name": "Delivery",
+            "items": [
+                "Delivery Management", "Stakeholder Management", "Facilitation", "CI/CD"
+            ]
+        },
+        {
+            "name": "Hands-on tech",
+            "items": [
+                "iOS / Swift", "Android / Kotlin", "React Native"
+            ]
+        }
     ],
     "languages": [
         { "name": "Russian", "level": "Native" },

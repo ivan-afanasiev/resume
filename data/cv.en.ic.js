@@ -43,16 +43,36 @@ window.CV_DATA.en.ic = {
         { "type": "linkedin", "value": "linkedin.com/in/ivanafanasiev", "href": "https://linkedin.com/in/ivanafanasiev" }
     ],
     "skills": [
-        "Client Platform Engineering", "Developer Experience & Tooling", "SDK Design & APIs",
-        "System Design", "Software Architecture", "Design patterns",
-        "Analytics & Experimentation platforms", "Code generation", "Feature flags & remote config",
-        "iOS", "Android", "Swift", "Objective-C", "Kotlin", "Java",
-        "React Native", "Flutter", "Dart",
-        "JavaScript", "TypeScript", "Next.js", "React",
-        "Python", "Django", "Ruby", "C/C++",
-        "GitHub", "GitHub Actions", "CI/CD",
-        "Unit testing", "UI testing",
-        "AI-driven tooling", "Technical leadership", "Mentoring"
+        {
+            "name": "Platform & Architecture",
+            "items": [
+                "Client Platform Engineering", "SDK Design & APIs",
+                "Developer Experience & Tooling", "System Design", "Software Architecture",
+                "Analytics & Experimentation platforms", "Feature flags & remote config",
+                "Code generation", "Design patterns"
+            ]
+        },
+        {
+            "name": "Languages",
+            "items": [
+                "Swift", "Objective-C", "Kotlin", "Java",
+                "TypeScript", "JavaScript", "Python", "Ruby", "Dart", "C/C++"
+            ]
+        },
+        {
+            "name": "Frameworks & Runtimes",
+            "items": [
+                "iOS", "Android", "React Native", "Flutter",
+                "Next.js", "React", "Django"
+            ]
+        },
+        {
+            "name": "Tooling & Practices",
+            "items": [
+                "CI/CD", "GitHub Actions", "Unit testing", "UI testing",
+                "AI-driven tooling", "Technical leadership", "Mentoring"
+            ]
+        }
     ],
     "languages": [
         { "name": "Russian", "level": "Native" },

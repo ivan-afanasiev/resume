@@ -132,11 +132,16 @@ function renderSidebar(data) {
     // Skills
     const skillsSection = el("section", { className: "section" });
     skillsSection.appendChild(el("h2", { className: "section-title", text: data.ui.sections.skills }));
-    const skillsList = el("ul", { className: "skills" });
-    for (const skill of data.skills) {
-        skillsList.appendChild(el("li", { text: skill }));
+    for (const group of data.skills) {
+        const groupEl = el("div", { className: "skill-group" });
+        groupEl.appendChild(el("h3", { className: "skill-group-title", text: group.name }));
+        const list = el("ul", { className: "skills" });
+        for (const item of group.items) {
+            list.appendChild(el("li", { text: item }));
+        }
+        groupEl.appendChild(list);
+        skillsSection.appendChild(groupEl);
     }
-    skillsSection.appendChild(skillsList);
     sidebar.appendChild(skillsSection);
 
     // Languages

@@ -228,6 +228,23 @@ a:hover {
 }
 
 /* Skills */
+.skill-group {
+    margin-bottom: 12px;
+}
+
+.skill-group:last-child {
+    margin-bottom: 0;
+}
+
+.skill-group-title {
+    font-size: var(--fs-small);
+    font-weight: 600;
+    color: var(--color-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    margin: 0 0 6px;
+}
+
 .skills {
     list-style: none;
     padding: 0;

@@ -58,6 +58,12 @@
         break-inside: avoid;
     }
 
+    /* Keep each skill group (title + chips) on the same page */
+    .skill-group {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+
     /* Keep section titles attached to their content */
     .section-title {
         page-break-after: avoid;
