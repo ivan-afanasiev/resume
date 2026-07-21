@@ -40,7 +40,9 @@
         display: none !important;
     }
 
-    /* Strip screen-only chrome: the page is now the printable area itself */
+    /* Strip screen-only chrome: the page is now the printable area itself.
+       @page owns the margins, so the .page element must not add its own
+       padding on top (that caused a cramped, double-margined layout). */
     .page {
         width: 100% !important;
         min-height: 0 !important;
@@ -62,14 +64,31 @@
         break-after: avoid;
     }
 
-    /* Make sure the body grid keeps its two columns at print resolution.
-       (Print viewports are sometimes narrow enough to trigger the
-        responsive single-column rule, which we don't want here.) */
+    /* CSS Grid cannot paginate: across multiple printed pages the browser
+       fragments a grid into a broken, interleaved mess. Floats *can*
+       flow across page boundaries, so for print we lay the two columns
+       out with a floated sidebar + a main column that wraps beside it. */
     .body {
-        display: grid !important;
-        grid-template-columns: 220px 1fr !important;
-        gap: 28px !important;
-        align-items: start !important;
+        display: block !important;
+    }
+
+    .sidebar {
+        float: left !important;
+        width: 210px !important;
+    }
+
+    .main-col {
+        /* Reserve the left gutter for the floated sidebar and let the main
+           column flow in its own track. Using margin (not a BFC) keeps the
+           column able to paginate independently across pages. */
+        margin-left: 234px !important;
+    }
+
+    /* Clear the float so anything after .body starts fresh */
+    .body::after {
+        content: "";
+        display: block !important;
+        clear: both !important;
     }
 
     .header {
